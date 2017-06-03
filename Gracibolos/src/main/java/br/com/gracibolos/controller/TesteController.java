@@ -2,14 +2,23 @@ package br.com.gracibolos.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.gracibolos.jdbc.dao.ProdutoDao;
+import br.com.gracibolos.jpa.dao.ColaboradorDao;
+import br.com.gracibolos.jpa.model.Colaborador;
+
 
 @Controller
 public class TesteController {
+	
+	@Autowired
+	ColaboradorDao dao;
+	Colaborador c;
+
 	
 	@RequestMapping("/teste-jquery")
 	public ModelAndView teste(HttpSession session)	{
@@ -24,10 +33,17 @@ public class TesteController {
 		try {
 			//mv.addObject("encFinal",daoEnc.finalizadas());
 			mv.addObject("produtos",daoPro.listar());
+			
+			c = new Colaborador();
+			c = dao.pesquisar("rogerio");
+			System.out.println(c.getNome());
+			
 		} catch (Exception e) {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		return mv;
 	}
 	

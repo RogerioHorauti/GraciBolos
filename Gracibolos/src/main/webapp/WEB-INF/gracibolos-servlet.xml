@@ -18,6 +18,7 @@
 		<bean class="br.com.gracibolos.interceptador.Interceptador" />
 	</mvc:interceptors>
 	
+	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
@@ -27,6 +28,16 @@
 	        <property name="maxUploadSize" value="100000000"></property>
 	</bean>
 	
-
-    
+	<!-- jpa -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+    	<property name="persistenceUnitName" value="gracibolosjpa" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	    <property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+		
+	
 </beans>

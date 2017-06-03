@@ -29,7 +29,8 @@ public class LoginController {
 	
 	//Método de autenticação de usuário
 	@RequestMapping("/login")
-	public ModelAndView login(Colaborador colaborador, HttpSession session, HttpServletResponse response, HttpServletRequest request){
+	public ModelAndView login(Colaborador colaborador, HttpSession session, HttpServletResponse response, 
+			HttpServletRequest request){
 		
 		//Declaração de valores padrões para as variaveis.
 		page = "index"; //Página padrão para redirecionamento
