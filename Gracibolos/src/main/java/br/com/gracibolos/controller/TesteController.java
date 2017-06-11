@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.gracibolos.jdbc.dao.ProdutoDao;
-import br.com.gracibolos.jpa.dao.ColaboradorDao;
+import br.com.gracibolos.jpa.dao.ColaboradorJpaDao;
 import br.com.gracibolos.jpa.model.Colaborador;
 
 
@@ -16,7 +16,7 @@ import br.com.gracibolos.jpa.model.Colaborador;
 public class TesteController {
 	
 	@Autowired
-	ColaboradorDao dao;
+	ColaboradorJpaDao dao;
 	Colaborador c;
 
 	

@@ -12,7 +12,7 @@ import br.com.gracibolos.jpa.model.Colaborador;
 
 
 @Repository
-public class ColaboradorDao {
+public class ColaboradorJpaDao {
 	
 	@PersistenceContext(name="gacibolosjpa")
 	private EntityManager em;
