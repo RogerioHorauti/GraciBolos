@@ -41,7 +41,7 @@ public class CaixaInserirRecebimento {
 			//descricao
 			c.setDescricao(null);
 			//data
-			//c.setData(gc.generateDate());
+			c.setDataTransacao(gc.generateDate());
 			try {
 				if(dao.inserir(c) == true){
 					System.out.println("inserido com sucesso : "+ i +": registros");

@@ -76,10 +76,15 @@ public class CaixaDao implements GenericoDao<Caixa>{
 			
 			ps.setBigDecimal(4, caixa.getValor());
 			ps.setBigDecimal(5, caixa.getSaldo());			
-			ps.setString(6, caixa.getForma());			
-			ps.setInt(7, caixa.getParcela());
+			ps.setString(6, caixa.getForma());	
+			
+			if(caixa.getParcela()!=null)
+				ps.setInt(7, caixa.getParcela());
+			else
+				ps.setNull(7, Types.INTEGER);
 			
 			ps.setDate(8, Date.valueOf(hoje));//Data da transação sempre hoje
+			//ps.setDate(8, Date.valueOf(caixa.getDataTransacao()));// Gerador
 			
 			if(caixa.getDataOperacao()!=null){
 				ps.setDate(9, Date.valueOf(caixa.getDataOperacao()));	

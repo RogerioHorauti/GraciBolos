@@ -1,6 +1,7 @@
 package br.com.gracibolos.jdbc.teste;
 
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
@@ -171,13 +172,13 @@ public class Gerador {
 	// Gerador de datas---------------------------------------------------------------------
 	public LocalDate generateDate(){
 		//Data inicial e final
-		LocalDate start = LocalDate.of(2014, Month.JANUARY, 1);
-		LocalDate end = LocalDate.of(2016, Month.JUNE, 21);
+		LocalDate start = LocalDate.of(2016, Month.JUNE, 1);
+		LocalDate end = LocalDate.of(2018, Month.JUNE, 21);
 		
 	    long days = ChronoUnit.DAYS.between(start, end);
 	    LocalDate randomDate = start.plusDays(new Random().nextInt((int) days + 1));
 	    //System.out.println(randomDate);
-	    
+	    //Date date = java.sql.Date.valueOf(randomDate);
         return randomDate;
 	}
 	
