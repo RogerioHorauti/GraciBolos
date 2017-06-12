@@ -1,31 +1,22 @@
 package br.com.gracibolos.controller;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.gracibolos.jdbc.dao.CaixaDao;
 import br.com.gracibolos.jdbc.dao.ClienteDao;
 import br.com.gracibolos.jdbc.dao.DashboardDao;
 import br.com.gracibolos.jdbc.dao.EncomendaDao;
 import br.com.gracibolos.jdbc.dao.ProdutoDao;
 import br.com.gracibolos.jdbc.model.Meses;
+import br.com.gracibolos.jpa.util.DataUtil;
 
 @Controller
-public class DashboardController {
-	
-	private static CaixaDao daoCaixa;
-	private static BigDecimal saldo;
+public class DashboardController extends DataUtil {
 	
 	@RequestMapping("/administrativo-dashboard")
 	public ModelAndView dashboard(){
 		System.out.println("Entrou na pagina dashboard");
-		
-		LocalDate ld = LocalDate.now();
-		String ano = String.valueOf(ld.getYear());
 		
 		Meses gasto = new Meses();
 		Meses rec = new Meses();
@@ -50,14 +41,5 @@ public class DashboardController {
 		return mv;
 	}
 	
-	public static BigDecimal saldo(){
-		daoCaixa = new CaixaDao();
-		try {
-			saldo = daoCaixa.getSaldo();
-		} catch (Exception e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		}
-		return saldo;
-	}
+	
 }

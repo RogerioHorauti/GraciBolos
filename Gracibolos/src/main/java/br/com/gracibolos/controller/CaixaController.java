@@ -1,9 +1,5 @@
 package br.com.gracibolos.controller;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -12,23 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.gracibolos.jdbc.dao.CaixaDao;
 import br.com.gracibolos.jdbc.model.Caixa;
+import br.com.gracibolos.jpa.util.DataUtil;
 
 @Controller
-public class CaixaController {
+public class CaixaController extends DataUtil{
 	
-	/*
-	 * 
-	 * ###################### CAIXA ######################
-	 * 
-	 * */
-	private static CaixaDao daoCaixa;
-	private static List<Caixa> listCaixa;
-	//private static Saldo saldo;
-	private static LocalDate data = LocalDate.now();
-	private static String dataInicial = data.with(TemporalAdjusters.firstDayOfMonth()).toString();
-	private static String dataFinal = data.with(TemporalAdjusters.lastDayOfMonth()).toString();
-	private static BigDecimal saldo;
-	//VERIFICA A DATA ATUAL, E PEGA O PRIMEIRO E ULTIMO DIA DO MÊS
+	private CaixaDao daoCaixa;
 			
 	//CAIXA
 	@RequestMapping("/administrativo-caixa")
@@ -45,32 +30,6 @@ public class CaixaController {
 		return mv;
 	}
 	
-	public static List<Caixa> listaCaixaMes()
-	{
-		daoCaixa = new CaixaDao();
-		listCaixa = new ArrayList<Caixa>();
-
-		//System.out.println(dataFinal);
-		try {
-			listCaixa = daoCaixa.pesquisarEntre(dataInicial, dataFinal);
-		} catch (Exception e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		}
-		return listCaixa;
-	}
-	
-	public static BigDecimal saldo(){
-		daoCaixa = new CaixaDao();
-		try {
-			saldo = daoCaixa.getSaldo();
-		} catch (Exception e) {
-			// Auto-generated catch block
-			e.printStackTrace();
-		}
-		return saldo;
-	}
-
 	//INCLUIR NOVO CAIXA
 	@RequestMapping("/administrativo-incluir-caixa")
 	public ModelAndView incluir_caixa(Caixa caixa){

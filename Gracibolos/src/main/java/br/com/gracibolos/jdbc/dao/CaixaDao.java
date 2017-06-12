@@ -7,24 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import br.com.gracibolos.jdbc.connection.ConnectionProvider;
 import br.com.gracibolos.jdbc.model.Caixa;
+import br.com.gracibolos.jpa.util.DataUtil;
 
-public class CaixaDao implements GenericoDao<Caixa>{
-
-	/*
-	 * INCLUIR CAIXA
-	 * 
-	 * Este método tem como principal objetivo receber os dados de um novo pagamento e persistir no banco de dados.
-	 * 
-	 * */
-	private static LocalDate hoje = LocalDate.now();
+public class CaixaDao extends DataUtil implements GenericoDao<Caixa>{
 	
 	public boolean inserir(Caixa caixa) throws Exception{
 		
@@ -109,13 +99,6 @@ public class CaixaDao implements GenericoDao<Caixa>{
 		//retorna true ou false, dizendo se o metodo foi executado com sucesso.
 		return status;
 	}
-	
-	/*
-	 * ALTERAR CAIXA
-	 * 
-	 * Este método tem como principal objetivo receber os dados de um determinado caixa e alterar os dados do banco de dados.
-	 * 
-	 * */
 
 	public boolean alterar(Caixa caixa) throws Exception{
 		boolean status = false;
@@ -170,13 +153,6 @@ public class CaixaDao implements GenericoDao<Caixa>{
 		//retorna true ou false, dizendo se o metodo foi executado com sucesso.
 		return status;
 	}
-	
-	/*
-	 * EXCLUIR CAIXA
-	 * 
-	 * Este método tem como principal objetivo receber os dados de um determinado caixa e excluir do banco de dados.
-	 * 
-	 * */
 
 	public boolean excluir(Caixa caixa) throws Exception{
 		//Atualização do saldo---------------------------
@@ -215,13 +191,6 @@ public class CaixaDao implements GenericoDao<Caixa>{
 		//retorna true ou false, dizendo se o metodo foi executado com sucesso.
 		return status;
 	}
-	
-	/*
-	 * LISTAR CAIXA
-	 * Este método tem como principal objetivo realizar uma consulta ao banco e retornar todos os caixas.
-	 * 
-	 * NÃO ESTÁ IMPLEMENTADO 
-	 */
 	
 	public List<Caixa> listar() throws Exception{
 		
@@ -267,13 +236,6 @@ public class CaixaDao implements GenericoDao<Caixa>{
 		return listaDeCaixa;
 	}
 
-	/*
-	 * PESQUISAR CAIXA
-	 * 
-	 * Este método tem como principal objetivo realizar uma consulta ao banco e retornar os dados dos caixa pesquisados.
-	 * 
-	 * */
-	
 	public List<Caixa> pesquisar(String pesquisa) throws Exception {
 		return null;
 	}
