@@ -11,7 +11,12 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Caixa.findAll", query="SELECT c FROM Caixa c")
+@NamedQueries({
+	@NamedQuery(name="Caixa.findAll", query="SELECT c FROM Caixa c"),
+	@NamedQuery(name="Caixa.findByEncomenda", query="SELECT c FROM Caixa c where c.encomenda = :encomenda"),
+	@NamedQuery(name="Caixa.betweenDate", query="SELECT c FROM Caixa c where c.dataTransacao between :dateStart and :dateEnd")
+})
+
 public class Caixa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +34,7 @@ public class Caixa implements Serializable {
 
 	private String forma;
 
-	private byte gastoRecebimento;
+	private int gastoRecebimento;
 
 	private int parcela;
 
@@ -90,11 +95,11 @@ public class Caixa implements Serializable {
 		this.forma = forma;
 	}
 
-	public byte getGastoRecebimento() {
+	public int getGastoRecebimento() {
 		return this.gastoRecebimento;
 	}
 
-	public void setGastoRecebimento(byte gastoRecebimento) {
+	public void setGastoRecebimento(int gastoRecebimento) {
 		this.gastoRecebimento = gastoRecebimento;
 	}
 
