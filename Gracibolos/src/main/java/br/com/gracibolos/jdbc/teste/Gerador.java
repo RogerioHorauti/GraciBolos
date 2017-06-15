@@ -1,7 +1,5 @@
 package br.com.gracibolos.jdbc.teste;
 
-
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;

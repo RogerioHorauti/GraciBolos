@@ -11,7 +11,7 @@ import br.com.gracibolos.jdbc.model.Caixa;
 import br.com.gracibolos.jpa.util.DataUtil;
 
 @Controller
-public class CaixaController extends DataUtil{
+public class CaixaController{
 	
 	private CaixaDao daoCaixa;
 			
@@ -23,10 +23,10 @@ public class CaixaController extends DataUtil{
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("administrativo/caixa");
-		mv.addObject("listCaixa",listaCaixaMes());
-		mv.addObject("saldo",saldo());
-		mv.addObject("datainicial", dataInicial);
-		mv.addObject("datafinal", dataFinal);
+		mv.addObject("listCaixa",DataUtil.listaCaixaMes());
+		mv.addObject("saldo",DataUtil.saldo());
+		mv.addObject("datainicial", DataUtil.dataInicial);
+		mv.addObject("datafinal", DataUtil.dataFinal);
 		return mv;
 	}
 	
@@ -59,10 +59,10 @@ public class CaixaController extends DataUtil{
 		mv.setViewName("administrativo/caixa");
 		//passa o retorno do status para a Expression Language chamada incluir
 		mv.addObject("incluir", status);
-		mv.addObject("listCaixa",listaCaixaMes());
-		mv.addObject("saldo",saldo());
-		mv.addObject("datainicial", dataInicial);
-		mv.addObject("datafinal", dataFinal);
+		mv.addObject("listCaixa",DataUtil.listaCaixaMes());
+		mv.addObject("saldo",DataUtil.saldo());
+		mv.addObject("datainicial", DataUtil.dataInicial);
+		mv.addObject("datafinal", DataUtil.dataFinal);
 		//retorna o mv
 		return mv;
 	}
@@ -97,10 +97,10 @@ public class CaixaController extends DataUtil{
 		mv.setViewName("administrativo/caixa");
 		//passa o retorno do status para a Expression Language chamada alterar
 		mv.addObject("alterar", status);
-		mv.addObject("listCaixa",listaCaixaMes());
-		mv.addObject("saldo",saldo());
-		mv.addObject("datainicial", dataInicial);
-		mv.addObject("datafinal", dataFinal);
+		mv.addObject("listCaixa",DataUtil.listaCaixaMes());
+		mv.addObject("saldo",DataUtil.saldo());
+		mv.addObject("datainicial", DataUtil.dataInicial);
+		mv.addObject("datafinal", DataUtil.dataFinal);
 	    //retorna mv
 		return mv;
 	}
@@ -132,12 +132,12 @@ public class CaixaController extends DataUtil{
 		ModelAndView mv = new ModelAndView();
 	    //seta o caminho e o nome da jsp
 		mv.setViewName("administrativo/caixa");
-		mv.addObject("listCaixa",listaCaixaMes());
-		mv.addObject("saldo",saldo());
+		mv.addObject("listCaixa",DataUtil.listaCaixaMes());
+		mv.addObject("saldo",DataUtil.saldo());
 		//passa o retorno do status para a Expression Language chamada excluir
 		mv.addObject("excluir", status);
-		mv.addObject("datainicial", dataInicial);
-		mv.addObject("datafinal", dataFinal);
+		mv.addObject("datainicial", DataUtil.dataInicial);
+		mv.addObject("datafinal", DataUtil.dataFinal);
 	    //retorna mv
 		return mv;
 	}
@@ -164,7 +164,7 @@ public class CaixaController extends DataUtil{
 		mv.setViewName("administrativo/caixa");
 	    //passa a lista do caixa para a Expression Language chamada caixas
 		mv.addObject("listCaixa", caixas);
-		mv.addObject("saldo",saldo());
+		mv.addObject("saldo",DataUtil.saldo());
 	    //retorna mv
 	    return mv;
 	}

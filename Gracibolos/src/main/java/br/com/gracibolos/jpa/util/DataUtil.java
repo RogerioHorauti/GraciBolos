@@ -11,16 +11,16 @@ import br.com.gracibolos.jdbc.model.Caixa;
 
 public class DataUtil {
 	
-	public LocalDate hoje = LocalDate.now();
-	public String dataInicial = hoje.with(TemporalAdjusters.firstDayOfMonth()).toString();
-	public String dataFinal = hoje.with(TemporalAdjusters.lastDayOfMonth()).toString();
-	public String ano = String.valueOf(hoje.getYear());
+	public static LocalDate hoje = LocalDate.now();
+	public static String dataInicial = hoje.with(TemporalAdjusters.firstDayOfMonth()).toString();
+	public static String dataFinal = hoje.with(TemporalAdjusters.lastDayOfMonth()).toString();
+	public static String ano = String.valueOf(hoje.getYear());
 	
-	private CaixaDao daoCaixa;
-	private BigDecimal saldo;
-	private List<Caixa> listCaixa;
+	private static CaixaDao daoCaixa;
+	private static BigDecimal saldo;
+	private static List<Caixa> listCaixa;
 	
-	public BigDecimal saldo(){
+	public static BigDecimal saldo(){
 		daoCaixa = new CaixaDao();
 		try {
 			saldo = daoCaixa.getSaldo();
@@ -31,7 +31,7 @@ public class DataUtil {
 		return saldo;
 	}
 	
-	public List<Caixa> listaCaixaMes()
+	public static List<Caixa> listaCaixaMes()
 	{
 		daoCaixa = new CaixaDao();
 		listCaixa = new ArrayList<Caixa>();
