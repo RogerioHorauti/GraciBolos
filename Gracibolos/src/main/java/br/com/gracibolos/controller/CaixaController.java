@@ -8,7 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.gracibolos.jdbc.dao.CaixaDao;
 import br.com.gracibolos.jdbc.model.Caixa;
-import br.com.gracibolos.jpa.util.DataUtil;
+import br.com.gracibolos.jpa.util.DateUtil;
+import br.com.gracibolos.jpa.util.FinanceiroUtil;
 
 @Controller
 public class CaixaController{
@@ -23,10 +24,10 @@ public class CaixaController{
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("administrativo/caixa");
-		mv.addObject("listCaixa",DataUtil.listaCaixaMes());
-		mv.addObject("saldo",DataUtil.saldo());
-		mv.addObject("datainicial", DataUtil.dataInicial);
-		mv.addObject("datafinal", DataUtil.dataFinal);
+		mv.addObject("listCaixa",FinanceiroUtil.listaCaixaMes());
+		mv.addObject("saldo",FinanceiroUtil.saldo());
+		mv.addObject("datainicial", DateUtil.primeiroDiaMes());
+		mv.addObject("datafinal", DateUtil.ultimoDiaMes());
 		return mv;
 	}
 	
@@ -59,10 +60,10 @@ public class CaixaController{
 		mv.setViewName("administrativo/caixa");
 		//passa o retorno do status para a Expression Language chamada incluir
 		mv.addObject("incluir", status);
-		mv.addObject("listCaixa",DataUtil.listaCaixaMes());
-		mv.addObject("saldo",DataUtil.saldo());
-		mv.addObject("datainicial", DataUtil.dataInicial);
-		mv.addObject("datafinal", DataUtil.dataFinal);
+		mv.addObject("listCaixa",FinanceiroUtil.listaCaixaMes());
+		mv.addObject("saldo",FinanceiroUtil.saldo());
+		mv.addObject("datainicial", DateUtil.primeiroDiaMes());
+		mv.addObject("datafinal", DateUtil.ultimoDiaMes());
 		//retorna o mv
 		return mv;
 	}
@@ -97,10 +98,10 @@ public class CaixaController{
 		mv.setViewName("administrativo/caixa");
 		//passa o retorno do status para a Expression Language chamada alterar
 		mv.addObject("alterar", status);
-		mv.addObject("listCaixa",DataUtil.listaCaixaMes());
-		mv.addObject("saldo",DataUtil.saldo());
-		mv.addObject("datainicial", DataUtil.dataInicial);
-		mv.addObject("datafinal", DataUtil.dataFinal);
+		mv.addObject("listCaixa",FinanceiroUtil.listaCaixaMes());
+		mv.addObject("saldo",FinanceiroUtil.saldo());
+		mv.addObject("datainicial", DateUtil.primeiroDiaMes());
+		mv.addObject("datafinal", DateUtil.ultimoDiaMes());
 	    //retorna mv
 		return mv;
 	}
@@ -132,12 +133,12 @@ public class CaixaController{
 		ModelAndView mv = new ModelAndView();
 	    //seta o caminho e o nome da jsp
 		mv.setViewName("administrativo/caixa");
-		mv.addObject("listCaixa",DataUtil.listaCaixaMes());
-		mv.addObject("saldo",DataUtil.saldo());
+		mv.addObject("listCaixa",FinanceiroUtil.listaCaixaMes());
+		mv.addObject("saldo",FinanceiroUtil.saldo());
 		//passa o retorno do status para a Expression Language chamada excluir
 		mv.addObject("excluir", status);
-		mv.addObject("datainicial", DataUtil.dataInicial);
-		mv.addObject("datafinal", DataUtil.dataFinal);
+		mv.addObject("datainicial", DateUtil.primeiroDiaMes());
+		mv.addObject("datafinal", DateUtil.ultimoDiaMes());
 	    //retorna mv
 		return mv;
 	}
@@ -164,7 +165,7 @@ public class CaixaController{
 		mv.setViewName("administrativo/caixa");
 	    //passa a lista do caixa para a Expression Language chamada caixas
 		mv.addObject("listCaixa", caixas);
-		mv.addObject("saldo",DataUtil.saldo());
+		mv.addObject("saldo",FinanceiroUtil.saldo());
 	    //retorna mv
 	    return mv;
 	}

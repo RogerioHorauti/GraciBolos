@@ -274,8 +274,8 @@
 								</div> 
 
 								<div class="input-margin col-xs-12 col-sm-6 col-md-3">
-									<label class="control-label" for="cpf" id="cpf_lbl">CPF*:</label>
-		<!-- id="cpf" -->			<input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" class="form-control" maxlength="14" required/>
+									<label class="control-label" for="cpf" id="cpf_lbl">CPF:</label>
+		<!-- id="cpf" -->			<input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" class="form-control" maxlength="14"/>
 								</div>
 
 								<div class="input-margin col-xs-12 col-sm-6 col-md-3">
@@ -284,18 +284,18 @@
 								</div>
 								
 								<div class="input-margin col-xs-12 col-sm-6 col-md-2">
-									<label class="control-label" for="cep">CEP*:</label>
-		<!-- id="cep" -->			<input type="text" id="cep" name="cep" placeholder="00000-000" class="form-control" maxlength="9" required/>
+									<label class="control-label" for="cep">CEP:</label>
+		<!-- id="cep" -->			<input type="text" id="cep" name="cep" placeholder="00000-000" class="form-control" maxlength="9"/>
 								</div>
 								
 								<div class="input-margin col-xs-12 col-sm-6 col-md-4">
-									<label class="control-label" for="endereco">Endereço*:</label>
-	<!-- id="endereco" -->			<input type="text" id="endereco" name="endereco" placeholder="Digite aqui o seu endereço" class="form-control" maxlength="120" required/>
+									<label class="control-label" for="endereco">Endereço:</label>
+	<!-- id="endereco" -->			<input type="text" id="endereco" name="endereco" placeholder="Digite aqui o seu endereço" class="form-control" maxlength="120"/>
 								</div>
 
 								<div class="input-margin col-xs-12 col-sm-6 col-md-2">
-									<label class="control-label" for="numero">Numero*:</label>
-		<!-- id="numero" -->		<input type="text" id="numero" name="numero" placeholder="0000" class="form-control" required/>
+									<label class="control-label" for="numero">Numero:</label>
+		<!-- id="numero" -->		<input type="text" id="numero" name="numero" placeholder="0000" class="form-control"/>
 								</div>
 
 								<div class="input-margin col-xs-12 col-sm-6 col-md-4">
@@ -304,13 +304,13 @@
 								</div>
 
 								<div class="input-margin col-xs-12 col-sm-6 col-md-3">
-									<label class="control-label" for="bairro">Bairro*:</label>
-		<!-- id="bairro" -->		<input type="text" id="bairro" name="bairro" placeholder="Digite seu bairro" class="form-control" maxlength="60" required/>
+									<label class="control-label" for="bairro">Bairro:</label>
+		<!-- id="bairro" -->		<input type="text" id="bairro" name="bairro" placeholder="Digite seu bairro" class="form-control" maxlength="60"/>
 								</div>
 
 								<div class="input-margin col-xs-12 col-sm-2 col-md-3">
-									<label class="control-label" for="estado">Estado*:</label>
-									<select class="form-control" id="estado" name="estado" required >
+									<label class="control-label" for="estado">Estado:</label>
+									<select class="form-control" id="estado" name="estado" >
 										<option selected="selected" disabled="disabled" value="0">Selecione o estado</option>
 			<!-- id="estado" -->			<c:forEach var="estado" items="${estados}">
 											<option value="${estado.id}">${estado.sigla}</option>
@@ -320,7 +320,7 @@
 
 								<div class="input-margin col-xs-12 col-sm-4 col-md-6">
 									<label class="control-label" for="cidade">Cidade*:</label>
-									<select class="form-control" id="cidade" name="cidade" required >
+									<select class="form-control" id="cidade" name="cidade" >
 										<option selected="selected" disabled="disabled" value="0">Selecione a cidade</option>
 			<!-- id="cidade" -->			<c:forEach var="cidade" items="${cidades}">
 											<option value="${cidade.id}">${cidade.nome}</option>
@@ -685,7 +685,7 @@
 				combo_cidade.find('option').remove();
 				
 				//Adiciona opção onde solicita que o usuário selecione uma cidade.
-				combo_cidade.append($('<option></option>').val(0).html("Selecione a cidade").attr('disabled','disabled').attr('selected','selected'));
+				//combo_cidade.append($('<option></option>').val(0).html("Selecione a cidade").attr('disabled','disabled').attr('selected','selected'));
 			});
 
             /*

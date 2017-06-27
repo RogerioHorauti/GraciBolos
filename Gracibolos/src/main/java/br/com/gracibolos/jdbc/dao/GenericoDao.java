@@ -2,7 +2,7 @@ package br.com.gracibolos.jdbc.dao;
 
 import java.util.List;
 
-public interface GenericoDao <E>{
+interface GenericoDao <E>{
 	
     boolean inserir(E e) throws Exception;
     boolean alterar(E e) throws Exception;

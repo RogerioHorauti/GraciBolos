@@ -12,7 +12,7 @@ import java.util.List;
 
 import br.com.gracibolos.jdbc.connection.ConnectionProvider;
 import br.com.gracibolos.jdbc.model.Caixa;
-import br.com.gracibolos.jpa.util.DataUtil;
+import br.com.gracibolos.jpa.util.DateUtil;
 
 public class CaixaDao implements GenericoDao<Caixa>{
 	
@@ -73,7 +73,7 @@ public class CaixaDao implements GenericoDao<Caixa>{
 			else
 				ps.setNull(7, Types.INTEGER);
 			
-			ps.setDate(8, Date.valueOf(DataUtil.hoje));//Data da transação sempre hoje
+			ps.setDate(8, Date.valueOf(DateUtil.hoje));//Data da transação sempre hoje
 			//ps.setDate(8, Date.valueOf(caixa.getDataTransacao()));// Gerador
 			
 			if(caixa.getDataOperacao()!=null){

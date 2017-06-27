@@ -626,7 +626,8 @@
 
                         //Consulta o webservice viacep.com.br/
                         //Ex: http://www.viacep.com.br/ws/04673070/json/?callback=?
-                        $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                        //http://localhost:9090/cep/"+cep
+                        $.getJSON("http://www.viacep.com.br/ws/"+cep+"/json/?callback=?", function(dados) {
 
                             if (!("erro" in dados)) {
                                 //Atualiza os campos com os valores da consulta.

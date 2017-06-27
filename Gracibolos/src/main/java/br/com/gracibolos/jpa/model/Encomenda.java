@@ -3,20 +3,20 @@ package br.com.gracibolos.jpa.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
-/**
- * The persistent class for the encomenda database table.
- * 
- */
 @Entity
-@NamedQuery(name="Encomenda.findAll", query="SELECT e FROM Encomenda e")
+@NamedQueries({
+	@NamedQuery(name="Encomenda.findAll", query="SELECT e FROM Encomenda e"),
+	@NamedQuery(name="Encomenda.findById", query="SELECT e FROM Encomenda e WHERE e.id = :id")
+})
 public class Encomenda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@Temporal(TemporalType.DATE)
@@ -42,33 +42,33 @@ public class Encomenda implements Serializable {
 
 	private String responsavel;
 
-	private BigDecimal total;
+	private BigDecimal total = new BigDecimal(0);
 
 	//bi-directional many-to-one association to Caixa
 	@OneToMany(mappedBy="encomenda")
-	private List<Caixa> caixas;
+	private List<Caixa> caixas = new ArrayList<Caixa>();
 
 	//bi-directional many-to-one association to Cliente
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="cliente")
-	private Cliente clienteBean;
+	private Cliente clienteBean = new Cliente();
 
 	//bi-directional many-to-one association to Status
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="status")
-	private Status statusBean;
+	private Status statusBean = new Status();
 
 	//bi-directional many-to-one association to Itemencomenda
-	@OneToMany(mappedBy="encomenda")
-	private List<Itemencomenda> itemencomendas;
+	@OneToMany(mappedBy="encomenda",cascade = CascadeType.PERSIST)
+	private List<Itemencomenda> itemencomendas = new ArrayList<Itemencomenda>();
 
 	//bi-directional many-to-one association to Produtopronto
-	@OneToMany(mappedBy="encomenda")
-	private List<Produtopronto> produtoprontos;
+	@OneToMany(mappedBy="encomenda",cascade = CascadeType.PERSIST)
+	private List<Produtopronto> produtoprontos = new ArrayList<Produtopronto>();
 
 	//bi-directional many-to-one association to Suporte
-	@OneToMany(mappedBy="encomenda")
-	private List<Suporte> suportes;
+	@OneToMany(mappedBy="encomenda",cascade = CascadeType.PERSIST)
+	private List<Suporte> suportes = new ArrayList<Suporte>();
 
 	public Encomenda() {
 	}
@@ -150,7 +150,7 @@ public class Encomenda implements Serializable {
 	}
 
 	public void setTotal(BigDecimal total) {
-		this.total = total;
+		this.total = this.total.add(total);
 	}
 
 	public List<Caixa> getCaixas() {

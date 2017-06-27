@@ -9,7 +9,8 @@ import br.com.gracibolos.jdbc.dao.DashboardDao;
 import br.com.gracibolos.jdbc.dao.EncomendaDao;
 import br.com.gracibolos.jdbc.dao.ProdutoDao;
 import br.com.gracibolos.jdbc.model.Meses;
-import br.com.gracibolos.jpa.util.DataUtil;
+import br.com.gracibolos.jpa.util.DateUtil;
+import br.com.gracibolos.jpa.util.FinanceiroUtil;
 
 @Controller
 public class DashboardController {
@@ -26,14 +27,14 @@ public class DashboardController {
 		EncomendaDao daoEnc = new EncomendaDao();
 		ProdutoDao daoPro = new ProdutoDao();
 		
-		gasto = dao.buscarGastoRecebimento("0", DataUtil.ano);//Aqui eu busquei os gastos "0" deste ano
-		rec = dao.buscarGastoRecebimento("1", DataUtil.ano);//Aqui eu busquei os recebimentos "0" deste ano
+		gasto = dao.buscarGastoRecebimento("0", Integer.toString(DateUtil.ano()));//Aqui eu busquei os gastos "0" deste ano
+		rec = dao.buscarGastoRecebimento("1", Integer.toString(DateUtil.ano()));//Aqui eu busquei os recebimentos "0" deste ano
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("administrativo/dashboard");
 		mv.addObject("clientes", daoCli.contagem());
 		mv.addObject("encomendas", daoEnc.contagemEmAberto());
-		mv.addObject("saldoMes",DataUtil.saldo());
+		mv.addObject("saldoMes",FinanceiroUtil.saldo());
 		mv.addObject("produtos", daoPro.contagem());
 		mv.addObject("gasto", gasto);
 		mv.addObject("recebimento", rec);

@@ -39,7 +39,7 @@ public class Gerador {
 	
 	//ids do clientes-----------------------------------------------------------
 	public int[] IdsCli(){	
-		ran = new Random();
+		//ran = new Random();
 		int i=0;
 		int[] ids = null;
 		try {
@@ -62,7 +62,7 @@ public class Gerador {
 	
 	//ids do fornecedor----------------------------------------------------------
 	public int[] IdsForn(){	
-		ran = new Random();
+		//ran = new Random();
 		int i=0;
 		int[] ids = null;
 		try {
@@ -85,6 +85,7 @@ public class Gerador {
 	
 	//Gerador de id Long-------------------------------------------------------------
 	public Long ranIdLong(Long[] ids){
+		ran = new Random();
 		Long id=0L;
 		id = ids[ran.nextInt(ids.length)];
 		return id;
@@ -92,7 +93,7 @@ public class Gerador {
 	
 	//produto-------------------------------------------------------------------------
 	public Long[] idsProduto(){
-		ran = new Random();
+		//ran = new Random();
 		int i=0;
 		Long[] ids = null;
 		try {
@@ -114,7 +115,7 @@ public class Gerador {
 	
 	//ids da encomenda---------------------------------------------------------------------
 	public Long[] IdsEnc(){	
-		ran = new Random();
+		//ran = new Random();
 		int i=0;
 		Long[] ids = null;
 		try {

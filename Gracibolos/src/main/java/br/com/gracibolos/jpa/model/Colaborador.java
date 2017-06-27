@@ -15,44 +15,27 @@ public class Colaborador implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-
-	private String bairro;
-
-	private String cel;
-
-	private String cep;
-
-	private int cidade;
-
-	private String complemento;
-
-	private String cpf;
-
-	private String email;
-
-	private String endereco;
-
-	private int estado;
-
+	private int status;
 	private int nivel;
-
+	private String usuario;
+	private String senha;
 	private String nome;
-
+	private String cpf;
+	private String rg;
+	private String endereco;
 	private String numero;
-
+	private String complemento;
+	private String bairro;
+	private int estado;
+	private int cidade;
+	private String cep;
+	private String tel;
+	private String cel;
+	private String email;
 	@Lob
 	private String obs;
-
-	private String rg;
-
-	private String senha;
-
-	private int status;
-
-	private String tel;
-
-	private String usuario;
 
 	//bi-directional many-to-one association to Conta
 	@OneToMany(mappedBy="colaborador")
@@ -234,5 +217,9 @@ public class Colaborador implements Serializable {
 
 		return conta;
 	}
-
+	
+	 @Override
+	public String toString() {
+		return "Colaborador [ id : "+id+", nome: "+nome+", nivel : "+nivel+"]";
+	}
 }

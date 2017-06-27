@@ -9,6 +9,12 @@
   <name>Gracibolos Maven Webapp</name>
   <dependencies>
     
+    <dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>5.2.10.Final</version>
+	</dependency>
+	   
     <!-- Servlet and JSP -->
    
     <dependency>
@@ -82,11 +88,11 @@
 	
 	<!-- MySql dependencies -->
 	<dependency>
-		<groupId>mysql</groupId>
-		<artifactId>mysql-connector-java</artifactId>
-		<version>5.1.38</version>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.42</version>
 	</dependency>
-	
+
 	<!-- Junit -->
 	<dependency>
 		<groupId>junit</groupId>

@@ -1,27 +1,20 @@
 package br.com.gacibolos.test;
 import static org.junit.Assert.assertEquals;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.gracibolos.jpa.dao.CaixaJpaDao;
 import br.com.gracibolos.jpa.model.Caixa;
 import br.com.gracibolos.jpa.model.Dashboard;
 import br.com.gracibolos.jpa.model.MesesJpa;
-import br.com.gracibolos.jpa.util.DataUtil;
+import br.com.gracibolos.jpa.util.DateUtil;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/gracibolos-servlet.xml")
-public class CaixaJpaTest extends DataUtil {
+public class CaixaJpaTest extends GenericTest {
 	
 	@Autowired
 	CaixaJpaDao dao;
@@ -30,10 +23,11 @@ public class CaixaJpaTest extends DataUtil {
 	
 	@Test
 	@Transactional
+	@Override
 	public void entreDatas(){
 		try {
 			list = new ArrayList<Caixa>();
-			list = dao.pesquisarEntre("2017-06-01", "2017-06-30");
+			list = dao.pesquisarEntre(DateUtil.asDate("2017-06-01"), DateUtil.asDate("2017-06-30"));
 			System.out.println("Números de entradas de Junho : "+list.size());
 			assertEquals("Entre datas ok",19, list.size());
 		} catch (Exception e) {
@@ -43,10 +37,11 @@ public class CaixaJpaTest extends DataUtil {
 	
 	@Test
 	@Transactional
-	public void pesqEncomendaId(){
+	@Override
+	public void pesqPorId(){
 		try {
 			caixa = new Caixa();
-			caixa = dao.pesquisaUnica("87");
+			caixa = dao.pesquisar("87");
 			System.out.println("encomendaId 87 : "+caixa.getValor());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,90 +53,85 @@ public class CaixaJpaTest extends DataUtil {
 	public void dashboard(){
 	//public Dashboard dashboard(String ano){
 		
-		list = new ArrayList<Caixa>();
-		LocalDate ld;
+		list = new ArrayList<Caixa>();	
 		MesesJpa receb = new MesesJpa();
-		MesesJpa gasto = new MesesJpa();
+		MesesJpa gasto = new MesesJpa();		
 		
 		try {
 			
 			//list = dao.pesquisarEntre(DataUtil.ano+"-01-01", DataUtil.ano+"-12-31");
-			list = dao.pesquisarEntre("2017-01-01", "2017-12-31");
+			list = dao.pesquisarEntre(DateUtil.asDate("2017-01-01"), DateUtil.asDate("2017-12-31"));
 			
 			for(Caixa c : list){
 				
-				//Conversão da dataTransacao para LocalDate
-				ld = c.getDataTransacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-				//System.out.println(ld.getMonthValue()+" "+c.getValor());
-				
-				switch(ld.getMonthValue()){
-					case 1 :
+				switch(DateUtil.mes(c.getDataTransacao())){
+					case 1 :// Janeiro
 						if(c.getGastoRecebimento()==1)// receb
 							receb.setJaneiro(c.getValor());
-					else							  // gasto
+						else							  // gasto
 							gasto.setJaneiro(c.getValor());
 						continue;
-					case 2 :
+					case 2 :// Fevereiro
 						if(c.getGastoRecebimento()==1)
 							receb.setFevereiro(c.getValor());
 						else
 							gasto.setFevereiro(c.getValor());
 						continue;
-					case 3 :
+					case 3 :// Março
 						if(c.getGastoRecebimento()==1)
 							receb.setMarco(c.getValor());
 						else
 							gasto.setMarco(c.getValor());
 						continue;
-					case 4 :
+					case 4 :// Abril
 						if(c.getGastoRecebimento()==1)
 							receb.setAbril(c.getValor());
 						else
 							gasto.setAbril(c.getValor());
 						continue;
-					case 5 :
+					case 5 :// Maio
 						if(c.getGastoRecebimento()==1)
 							receb.setMaio(c.getValor());
 						else
 							gasto.setMaio(c.getValor());
 						continue;
-					case 6 :
+					case 6 :// Junho
 						if(c.getGastoRecebimento()==1)
 							receb.setJunho(c.getValor());
 						else
 							gasto.setJunho(c.getValor());
 						continue;
-					case 7 :
+					case 7 :// Julho
 						if(c.getGastoRecebimento()==1)
 							receb.setJulho(c.getValor());
 						else
 							gasto.setJulho(c.getValor());
 						continue;
-					case 8 :
+					case 8 :// Agosto
 						if(c.getGastoRecebimento()==1)
 							receb.setAgosto(c.getValor());
 						else
 							gasto.setAgosto(c.getValor());
 						continue;
-					case 9 :
+					case 9 :// Setembro
 						if(c.getGastoRecebimento()==1)
 							receb.setSetembro(c.getValor());
 						else
 							gasto.setSetembro(c.getValor());
 						continue;
-					case 10 :
+					case 10 :// Outubro
 						if(c.getGastoRecebimento()==1)
 							receb.setOutubro(c.getValor());
 						else
 							gasto.setOutubro(c.getValor());
 						continue;
-					case 11 :
+					case 11 :// Novembro
 						if(c.getGastoRecebimento()==1)
 							receb.setNovembro(c.getValor());
 						else
 							gasto.setNovembro(c.getValor());
 						continue;
-					case 12 :
+					case 12 :// Dezembro
 						if(c.getGastoRecebimento()==1)
 							receb.setDezembro(c.getValor());
 						else

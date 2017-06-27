@@ -15,6 +15,7 @@ public class Itemencomenda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private int qtd;
@@ -24,12 +25,12 @@ public class Itemencomenda implements Serializable {
 	private BigDecimal valor;
 
 	//bi-directional many-to-one association to Encomenda
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="encomendaId")
 	private Encomenda encomenda;
 
 	//bi-directional many-to-one association to Produto
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="produtoId")
 	private Produto produto;
 

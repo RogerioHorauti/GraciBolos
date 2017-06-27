@@ -1,20 +1,13 @@
 package br.com.gracibolos.jpa.util;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gracibolos.jdbc.dao.CaixaDao;
 import br.com.gracibolos.jdbc.model.Caixa;
 
-public class DataUtil {
-	
-	public static LocalDate hoje = LocalDate.now();
-	public static String dataInicial = hoje.with(TemporalAdjusters.firstDayOfMonth()).toString();
-	public static String dataFinal = hoje.with(TemporalAdjusters.lastDayOfMonth()).toString();
-	public static String ano = String.valueOf(hoje.getYear());
+public class FinanceiroUtil {
 	
 	private static CaixaDao daoCaixa;
 	private static BigDecimal saldo;
@@ -38,7 +31,10 @@ public class DataUtil {
 
 		//System.out.println(dataFinal);
 		try {
-			listCaixa = daoCaixa.pesquisarEntre(dataInicial, dataFinal);
+			listCaixa = daoCaixa.pesquisarEntre(
+					DateUtil.primeiroDiaMes().toString(), 
+					DateUtil.ultimoDiaMes().toString()
+					);
 		} catch (Exception e) {
 			// Auto-generated catch block
 			e.printStackTrace();
